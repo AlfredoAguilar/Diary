@@ -1,0 +1,22 @@
+{% extends "base_theme.html" %}
+{% load static from staticfiles %}
+{% load i18n %}
+
+{% block title %}Admin | Example{% endblock %}
+
+{% block page_title %}
+    <i class="fas fa-info-circle"></i> Página de Ejemplo
+{% endblock %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <p>{% trans "Contenido de la página." %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

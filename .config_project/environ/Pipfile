@@ -1,0 +1,43 @@
+# Dependencies for  Ago 2020
+
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+django-debug-toolbar = "==2.2"
+pytest = "==6.0.1"
+
+[packages]
+django-environ = "==0.4.5"
+django = "==2.2.8"
+psycopg2-binary = "==2.8.4"
+sentry-sdk = "==0.13.5"
+uWSGI = "==2.0.18"
+django-redis = "==4.10.0"
+django-storages = "==1.8"
+boto3 = "==1.10.37"
+django-stdimage = "==5.0.1"
+
+# Auth Packages
+django-allauth = "<=0.41.*"
+
+# API THINGS
+djangorestframework = "==3.11.0"
+django-filter = "==2.2.0"
+django-cors-middleware = "==1.5.0"
+
+# Templates
+django-widget-tweaks = "*"
+
+# Tasks Queue
+celery =  "==4.4.*"
+django-celery-beat = "==2.0.*"
+
+#Phone Numbers
+django-phonenumber-field = "==4.0.*"
+phonenumbers = "==8.11.*"
+
+[requires]
+python_version = "3.7"

@@ -1,0 +1,17 @@
+{% load i18n %}
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                Copyright © {% now "Y" %} {{request.environ.PROJECT}}
+                <p style="margin-bottom: 0;">{% now "SHORT_DATETIME_FORMAT" %} - EST -05:00</p>
+            </div>
+            <div class="col-md-6">
+                <div class="text-md-right footer-links d-none d-md-block">
+                    {% block footer_links %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

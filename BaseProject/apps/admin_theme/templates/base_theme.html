@@ -1,0 +1,83 @@
+{% load static from staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block metatags %}
+        <meta name="description" content="Admin">
+    {% endblock %}
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}"/>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/fontawesome/css/all.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/datatables/datatables.min.css' %}"/>
+    {% block extra_styles %}{% endblock %}
+
+    <title>
+        {% block title %}Admin{% endblock %}
+    </title>
+</head>
+
+<body class="" data-leftbar-theme="dark">
+
+    <!-- Begin page -->
+    {% block content %}
+    <div class="wrapper">
+
+        {% block sidebar %}
+            {% include "sidebar.html" %}
+        {% endblock %}
+
+        {% block container %}
+        <div class="content-page">
+            <div class="content">
+
+                {% block navbar %}
+                    {% include "navbar.html" %}
+                {% endblock %}
+
+                <div class="container-fluid">
+
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message|safe }}
+                        </div>
+                    {% endfor %}
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title">{% block page_title %}{% endblock %}</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% block page_content %} {% endblock %}
+
+                </div>
+            </div>
+
+            {% block footer %}
+                {% include 'footer.html' %}
+            {% endblock %}
+
+        </div>
+        {% endblock %}
+
+    </div>
+    {% endblock %}
+
+    <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/datatables/datatables.min.js'%}"></script>
+    {% block js_resources %} {% endblock %}
+    {% block extra_resources %} {% endblock %}
+
+</body>
+</html>
