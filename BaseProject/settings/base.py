@@ -48,6 +48,12 @@ class BaseSettings(Settings):
         LOGIN_REDIRECT_URL=str,
         LOG_CONSOLE_LEVEL=str,
         LOG_FILE_DJANGO_LEVEL=str,
+        SENDGRID_API_KEY=str,
+        SENDGRID_SANDBOX_MODE_IN_DEBUG=(bool, False),
+        EMAIL_BACKEND_SETTING=str,
+        EMAIL_FILE_PATH=str,
+        SERVER_EMAIL=str,
+
     )
     env_path = None
     if os.environ['DJANGO_SETTINGS_MODULE'] == 'BaseProject.settings.dev':
@@ -71,13 +77,21 @@ class BaseSettings(Settings):
     WSGI_APPLICATION = 'BaseProject.core.wsgi.application'
 
     DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-    EMAIL_URL = env.email()  # == EMAIL_URL = env.email_url('EMAIL_URL')
-    EMAIL_BACKEND = EMAIL_URL['EMAIL_BACKEND']
-    EMAIL_HOST = EMAIL_URL['EMAIL_HOST']
-    EMAIL_HOST_PASSWORD = EMAIL_URL['EMAIL_HOST_PASSWORD']
-    EMAIL_HOST_USER = EMAIL_URL['EMAIL_HOST_USER']
-    EMAIL_PORT = EMAIL_URL['EMAIL_PORT']
-    EMAIL_USE_TLS = EMAIL_URL['EMAIL_USE_TLS']
+
+    @property
+    def EMAIL_BACKEND(self):
+        if self.EMAIL_BACKEND_SETTING == "console":
+            return "django.core.mail.backends.console.EmailBackend"
+        elif self.EMAIL_BACKEND_SETTING == "file":
+            return "django.core.mail.backends.filebased.EmailBackend"
+        else:
+            return "sendgrid_backend.SendgridBackend"
+
+    SENDGRID_API_KEY = env('SENDGRID_API_KEY')
+    SENDGRID_SANDBOX_MODE_IN_DEBUG = env('SENDGRID_SANDBOX_MODE_IN_DEBUG')
+    EMAIL_BACKEND_SETTING = env('EMAIL_BACKEND_SETTING')
+    EMAIL_FILE_PATH = os.path.join(SITE_ROOT, env('EMAIL_FILE_PATH'))
+    SERVER_EMAIL = env('SERVER_EMAIL')
 
     @property
     def ADMINS(self):  # noqa
