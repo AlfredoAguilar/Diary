@@ -15,6 +15,8 @@ class User(AbstractUser):
         ('Tec', 'Técnico'),
         ('Ventas', 'Ventas')
     )
+    username = None
+    email = models.EmailField(verbose_name='email address', unique=True)
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Última Actualización')
     avatar = StdImageField(upload_to='usuarios/%Y/%m/',
                            variations={'perfil': {"width": 240, "height": 240, "crop": True},
@@ -22,6 +24,8 @@ class User(AbstractUser):
                            default="usuarios/avatar.png")
     direccion = models.TextField(blank=True)
     telefono = models.CharField(validators=[phone_regex], max_length=250, blank=True, verbose_name="Teléfono Celular")
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['USERNAME_FIELD', ]
 
     def __str__(self):
-        return '{}'.format(self.username)
+        return '{}'.format(self.email)
