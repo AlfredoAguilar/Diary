@@ -22,8 +22,8 @@ class User(AbstractUser):
                            variations={'perfil': {"width": 240, "height": 240, "crop": True},
                                        'thumbnail': {"width": 45, "height": 45, "crop": True}},
                            default="usuarios/avatar.png")
-    direccion = models.TextField(blank=True)
-    telefono = models.CharField(validators=[phone_regex], max_length=250, blank=True, verbose_name="Teléfono Celular")
+    address = models.TextField(blank=True)
+    phone_number = models.CharField(validators=[phone_regex], max_length=250, blank=True, verbose_name="Teléfono Celular")
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['USERNAME_FIELD', ]
 
