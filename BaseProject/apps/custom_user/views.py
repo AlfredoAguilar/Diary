@@ -2,13 +2,18 @@ from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from .decorators import AllowedUsersView
 from .models import User
+from django.urls import reverse_lazy
 
 
 class CreateUsersView(AllowedUsersView, CreateView):
-    template_name = "user_form.html"
+    template_name = "register_user.html"
     model = User
-    fields = "__all__"
+    fields = [
+        "email", "groups", "department", "address",
+        "avatar", "password"
+    ]
     allowed_roles = ["admin", ]
+    success_url = reverse_lazy('list_user')
 
 
 class ListUsersView(AllowedUsersView, ListView):
