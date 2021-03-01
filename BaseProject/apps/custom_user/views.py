@@ -13,7 +13,7 @@ class CreateUsersView(AllowedUsersView, CreateView):
         "avatar", "password"
     ]
     allowed_roles = ["admin", ]
-    success_url = reverse_lazy('list_user')
+    success_url = reverse_lazy('custom_user:list_user')
 
 
 class ListUsersView(AllowedUsersView, ListView):

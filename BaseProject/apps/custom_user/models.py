@@ -3,11 +3,27 @@ from django.db import models
 from stdimage import StdImageField
 from django.core.validators import RegexValidator
 from BaseProject.apps.Diary.models import Department
+from django.utils.deconstruct import deconstructible
 
 phone_regex = RegexValidator(regex=r'^\d{8,14}((,\d{8,14})?)*$',
                              message="El formato del teléfono debe ser: '9998888777', "
                                      "sin código de país. De 8-14 dígitos permitidos. "
                                      "Puede agregar más telefonos seperados por coma.")
+
+@deconstructible
+class UploadImage(object):
+
+    def __init__(self, nombre_carpeta):
+        self.ruta = nombre_carpeta
+
+    def __call__(self, instance, filename):
+        ext = filename.split('.')[-1]
+        filename = '{}.{}'.format(uuid4().hex, ext)
+
+        return "%s/%s" % (self.ruta, filename)
+
+    def __eq__(self, other):
+        return self.foo == other.foo
 
 
 class User(AbstractUser):
@@ -19,7 +35,7 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(verbose_name='email address', unique=True)
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Última Actualización')
-    avatar = StdImageField(upload_to='usuarios/%Y/%m/',
+    avatar = StdImageField(upload_to=UploadImage('usuarios/'),
                            variations={'perfil': {"width": 240, "height": 240, "crop": True},
                                        'thumbnail': {"width": 45, "height": 45, "crop": True}},
                            default="usuarios/avatar.png")
