@@ -1,42 +1,17 @@
-from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
-def unauthenticated_user(view_func):
-    def wrapper_func(request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect('/theme')
-        return view_func(request, *args, **kwargs)
+class AllowedUsersView(PermissionRequiredMixin):
+    allowed_roles = ["admin"]
 
-    return wrapper_func
-
-
-def allowed_users(allowed_roles=[]):
-    def decorator(view_func):
-        def wrapper_func(request, *args, **kwargs):
-            authorized = False
-            groups = request.user.groups.all()
-            for group in groups:
-                if group.name in allowed_roles:
-                    authorized = True
-
-            if authorized:
-                return view_func(request, *args, **kwargs)
-            return HttpResponse('You are not authorized to view this page')
-
-        return wrapper_func
-
-    return decorator
-
-
-def admin_only(view_func):
-    def wrapper_function(request, *args, **kwargs):
-
-        groups = request.user.groups.all()
+    def has_permission(self):
+        """
+        Validate if user who send request ar in allowed groups
+        """
+        authorized = False
+        groups = self.request.user.groups.all()
         for group in groups:
-            if group.name == "simple_user":
-                return redirect('theme/')
-            elif group.name == 'admin':
-                return view_func(request, *args, **kwargs)
+            if group.name in self.allowed_roles:
+                authorized = True
 
-    return wrapper_function
+        return authorized

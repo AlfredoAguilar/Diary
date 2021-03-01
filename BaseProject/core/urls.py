@@ -42,6 +42,9 @@ urlpatterns += i18n_patterns(
     # API POSTS
     path('auth-api/', include('rest_framework.urls', namespace='rest_framework')),
 
+    # User URLS
+    path('user/', include('BaseProject.apps.custom_user.urls')),
+
     prefix_default_language=False
 )
 

@@ -26,8 +26,11 @@ class User(AbstractUser):
     address = models.TextField(blank=True)
     phone_number = models.CharField(validators=[phone_regex], max_length=250, blank=True, verbose_name="Teléfono Celular")
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['USERNAME_FIELD', ]
-    department = models.ForeignKey(Department, verbose_name="Departamento", on_delete=models.CASCADE)
+    REQUIRED_FIELDS = []
+    department = models.ForeignKey(
+        Department, verbose_name="Departamento", on_delete=models.CASCADE,
+        null=True, blank=True
+    )
 
     def __str__(self):
-        return '{}'.format(self.USERNAME_FIELD)
+        return '{}'.format(self.email)
