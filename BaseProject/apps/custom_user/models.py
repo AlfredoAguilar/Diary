@@ -9,6 +9,18 @@ phone_regex = RegexValidator(regex=r'^\d{8,14}((,\d{8,14})?)*$',
                                      "Puede agregar más telefonos seperados por coma.")
 
 
+class Department(models.Model):
+    name = models.CharField(verbose_name='Nombre', max_length=30, unique=True)
+    office_number = models.IntegerField(verbose_name='Numero de Oficina')
+
+    def __str__(self):
+        return '{}'.format(self.name)
+
+    class Meta:
+        verbose_name = "Departamento"
+        verbose_name_plural = "Departamento"
+
+
 class User(AbstractUser):
     TYPE = (
         ('Admin', 'Administrador'),
@@ -26,6 +38,7 @@ class User(AbstractUser):
     phone_number = models.CharField(validators=[phone_regex], max_length=250, blank=True, verbose_name="Teléfono Celular")
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['USERNAME_FIELD', ]
+    department = models.ForeignKey(Department, verbose_name="Departamento", on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{}'.format(self.email)
+        return '{}'.format(self.USERNAME_FIELD)
