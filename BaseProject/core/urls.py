@@ -44,6 +44,7 @@ urlpatterns += i18n_patterns(
 
     # User URLS
     path('user/', include('BaseProject.apps.custom_user.urls')),
+    path('department/', include('BaseProject.apps.Diary.urls')),
 
     prefix_default_language=False
 )

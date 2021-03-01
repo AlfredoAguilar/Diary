@@ -1,10 +1,46 @@
+{% extends "base_theme.html" %}
+{% load static from staticfiles %}
+{% load i18n %}
+
+{% block title %} Registro Departamentos {% endblock %}
+
+
+{% block page_content %}
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="container-fluid">
+        <section class="container">
+            <div class="container-page">
+            <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">Name Department</th>
+                  <th scope="col">Office Number</th>
+                  <th scope="col">Floor Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for department in object_list %}
+                    <tr>
+                      <td>{{department.name}}</td>
+                      <td>{{department.office_number}}</td>
+                      <td>{{department.floor_number}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
+
+
+
 <h1>List Departments</h1>
-<ul>
-{% for department in object_list %}
-    <li>
-        <span>
-            {{department.name}} , {{department.office_number}} , {{department.floor_number}}
-        </span>
-    </li>
-{% endfor %}
+<
 </ul>
