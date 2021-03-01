@@ -2,23 +2,12 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from stdimage import StdImageField
 from django.core.validators import RegexValidator
+from BaseProject.apps.Diary.models import Department
 
 phone_regex = RegexValidator(regex=r'^\d{8,14}((,\d{8,14})?)*$',
                              message="El formato del teléfono debe ser: '9998888777', "
                                      "sin código de país. De 8-14 dígitos permitidos. "
                                      "Puede agregar más telefonos seperados por coma.")
-
-
-class Department(models.Model):
-    name = models.CharField(verbose_name='Nombre', max_length=30, unique=True)
-    office_number = models.IntegerField(verbose_name='Numero de Oficina')
-
-    def __str__(self):
-        return '{}'.format(self.name)
-
-    class Meta:
-        verbose_name = "Departamento"
-        verbose_name_plural = "Departamento"
 
 
 class User(AbstractUser):

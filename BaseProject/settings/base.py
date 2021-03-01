@@ -132,6 +132,7 @@ class BaseSettings(Settings):
             # Project apps
             'BaseProject.apps.custom_user',
             'BaseProject.apps.admin_theme',
+            'BaseProject.apps.Diary'
         ]
         return apps
 
