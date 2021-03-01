@@ -1,0 +1,10 @@
+<h1>List Departments</h1>
+<ul>
+{% for department in object_list %}
+    <li>
+        <span>
+            {{department.name}} , {{department.office_number}} , {{department.floor_number}}
+        </span>
+    </li>
+{% endfor %}
+</ul>
