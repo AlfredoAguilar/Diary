@@ -14,7 +14,7 @@
 
                 <!--- Sidemenu -->
                 <ul class="metismenu side-nav">
-                    <li class="side-nav-title side-nav-item">Navigation</li>
+                    <li class="side-nav-title side-nav-item">Navegación</li>
                     <li class="side-nav-item">
                         <a href="javascript: void(0);" class="side-nav-link">
                             <i class="fas fa-tachometer-alt"></i>
@@ -27,43 +27,34 @@
                     <li class="side-nav-item">
                         <a href="javascript: void(0);" class="side-nav-link">
                             <i class="fas fa-code"></i>
-                            <span> Multi Level </span>
+                            <span> Contenido </span>
                             <span class="menu-arrow"></span>
                         </a>
                         <ul class="side-nav-second-level" aria-expanded="false">
                             <li class="side-nav-item">
-                                <a href="javascript: void(0);" aria-expanded="false">Second Level
+                                <a href="javascript: void(0);" aria-expanded="false">Usuarios
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="side-nav-third-level" aria-expanded="false">
                                     <li>
-                                        <a href="javascript: void(0);">Item 1</a>
+                                        <a href="{% url 'custom_user:list_user' %}">Listar</a>
                                     </li>
                                     <li>
-                                        <a href="javascript: void(0);">Item 2</a>
+                                        <a href="{% url 'custom_user:create_user' %}">Crear</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="side-nav-item">
-                                <a href="javascript: void(0);" aria-expanded="false">Third Level
+                                <a href="javascript: void(0);" aria-expanded="false">Departamentos
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="side-nav-third-level" aria-expanded="false">
                                     <li>
-                                        <a href="javascript: void(0);">Item 1</a>
+                                        <a href="javascript: void(0);">Listar departamento</a>
                                     </li>
                                     <li class="side-nav-item">
-                                        <a href="javascript: void(0);" aria-expanded="false">Item 2
-                                            <span class="menu-arrow"></span>
+                                        <a href="javascript: void(0);" aria-expanded="false">Crear departamento
                                         </a>
-                                        <ul class="side-nav-forth-level" aria-expanded="false">
-                                            <li>
-                                                <a href="javascript: void(0);">Item 2.1</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript: void(0);">Item 2.2</a>
-                                            </li>
-                                        </ul>
                                     </li>
                                 </ul>
                             </li>
