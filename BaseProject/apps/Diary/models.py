@@ -7,7 +7,7 @@ class Department(models.Model):
     floor_number = models.PositiveSmallIntegerField(verbose_name='Numero de piso')
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{}'.format(self.name_department)
 
     class Meta:
         verbose_name = "Departamento"
