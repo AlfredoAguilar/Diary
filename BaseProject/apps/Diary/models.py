@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Department(models.Model):
-    name = models.CharField(verbose_name='Nombre', max_length=30, unique=True)
+    name_department = models.CharField(verbose_name='Nombre', max_length=30, unique=True)
     office_number = models.PositiveSmallIntegerField(verbose_name='Numero de Oficina')
     floor_number = models.PositiveSmallIntegerField(verbose_name='Numero de piso')
 

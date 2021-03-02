@@ -12,6 +12,12 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 
+    <h1>List All Departments</h1>
+
+    <form action="{% url 'Diary:search' %}" method="get">
+    <input name="q" type="text" placeholder="Nombre del Departamento">
+    </form>
+
     <div class="container-fluid">
         <section class="container">
             <div class="container-page">
@@ -26,7 +32,7 @@
                 <tbody>
                     {% for department in object_list %}
                     <tr>
-                      <td>{{department.name}}</td>
+                      <td>{{department.name_department}}</td>
                       <td>{{department.office_number}}</td>
                       <td>{{department.floor_number}}</td>
                     </tr>
@@ -38,9 +44,3 @@
     </div>
 
 {% endblock %}
-
-
-
-<h1>List Departments</h1>
-<
-</ul>
